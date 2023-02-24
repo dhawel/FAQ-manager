@@ -1,10 +1,10 @@
 {
     "compilerOptions": {
-      "target": "ES2020",
+      "target": "ESNext",
 
       /* Modules */
-      "module": "NodeNext" /* Specify what module code is generated. */,
-      "moduleResolution": "nodenext",
+      "module": "ESNext" /* Specify what module code is generated. */,
+      "moduleResolution": "node",
 
       "outDir": "dist" /* Specify an output folder for all emitted files. */,
 
