@@ -10,8 +10,8 @@ export interface IQuestion extends Document {
 const QuestionSchema: Schema = new Schema({
   question: { type: String, required: true },
   catagory: { type: String, required: true },
-  statues: { type: String, required: true },
-  answer: { type: String, required: true },
+  statues: { type: String, required: false },
+  answer: { type: String, required: false },
 });
 
 export default mongoose.model<IQuestion>("Question", QuestionSchema);
