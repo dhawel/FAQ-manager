@@ -1,0 +1,48 @@
+
+.container{
+    display:grid;
+    width: 100vw;
+    height: 100%;
+
+  background-color: #7fffd4;
+  grid-template-rows: 100px 80px auto 100px;
+  gap:10px;
+  padding: 5px;
+  box-sizing: border-box;
+  overflow-y: scroll;
+
+}
+
+.container div{
+    border: 1px solid #000000;
+    padding: 20px;
+}
+.table{
+
+
+}
+.header{
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.search{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.searchbox{
+    padding: 5px;
+    margin: 5px;
+    flex-grow: 5;
+}
+.searchbutton{
+    padding: 5px;
+    margin: 5px;
+    flex-grow: 2;
+}
