@@ -10,7 +10,7 @@ const Faq = () => {
     {/* <SearchButton/> */}
     <div className={styles.container}>
      <div className={styles.header} >
-        <h1  className={styles.tittle} >FAQ Manger - iLabs </h1>
+        <h2  className={styles.tittle} >FAQ Manger - iLabs </h2>
         <div className={styles.modal}>Add New question</div>
      </div>
      <div className={styles.search} >
