@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import SearchButton from "@/components/SearchButton";
 // import SearchBox from "@/components/SearchBox";
+import AddQuestion from "@/components/AddQuestion";
 import FaqTable from "@/components/FaqTable"
 import styles from '@/styles/Myfaq.module.css'
 const Faq = () => {
@@ -11,7 +12,9 @@ const Faq = () => {
     <div className={styles.container}>
      <div className={styles.header} >
         <h2  className={styles.tittle} >FAQ Manger - iLabs </h2>
-        <div className={styles.modal}>Add New question</div>
+        <div className={styles.modal}>
+            <AddQuestion/>
+        </div>
      </div>
      <div className={styles.search} >
         <div className={styles.searchbox}></div>
