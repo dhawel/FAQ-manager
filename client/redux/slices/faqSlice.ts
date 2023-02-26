@@ -62,7 +62,7 @@ export const questionSlice = createSlice({
         })
         // Do something if fails.
         builder.addCase(postQuestion.rejected, (state, action) => {
-            console.log(action.payload)
+            // console.log(action.payload)
         })
     },
 });

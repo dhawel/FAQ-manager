@@ -56,7 +56,7 @@ const AddQuestion = () => {
     },
   ];
   const SubmitBtn = async () => {
-    console.log("sumbittt", Question, Category);
+   
     const newQuestion = {
       question: Question,
       category: Category,

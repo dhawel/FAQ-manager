@@ -65,7 +65,7 @@ export const faqSlice = createSlice({
 
         state.status = 'succeeded';
         state.faqs = action.payload;
-        console.log("ran",state.faqs );
+       
 
       })
       .addCase(fetchFaqs.rejected, (state, action) => {
