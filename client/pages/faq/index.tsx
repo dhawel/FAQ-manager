@@ -4,7 +4,11 @@ import SearchButton from "@/components/SearchButton";
 import AddQuestion from "@/components/AddQuestion";
 import FaqTable from "@/components/FaqTable"
 import styles from '@/styles/Myfaq.module.css'
-const Faq = () => {
+import {connect} from 'react-redux';
+import { wrapper,State } from "@/redux/store";
+import { fetchFaqs } from "@/redux/slices/faqSlicenew";
+const Faq = ({faq}) => {
+  console.log("props",faq.faqs);
   return (
     <>
 
@@ -21,7 +25,7 @@ const Faq = () => {
         <div className={styles.searchbutton}></div>
      </div>
      <div className={styles.table} >
-        <FaqTable/>
+        <FaqTable faqs={faq.faqs}/>
      </div>
      <div className={styles.footer} >
        footer
@@ -31,5 +35,19 @@ const Faq = () => {
     </>
   )
 };
-
-export default Faq;
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+    async ({ params }) => {
+      // we can set the initial state from here
+      // we are setting to false but you can run your custom logic here
+      await store.dispatch(fetchFaqs());
+      console.log("State on server", store.getState());
+      return {
+        props: {
+          authState: false,
+        },
+      };
+    }
+);
+// export default Faq;
+export default connect((state: State) => state)(Faq);

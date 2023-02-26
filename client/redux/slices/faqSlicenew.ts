@@ -1,5 +1,9 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { createAsyncThunk, createSlice, PayloadAction,configureStore, ThunkAction } from '@reduxjs/toolkit';
 import faqApi from './faqAPI';
+import { AppState } from "../store";
+import {Action} from 'redux';
+import {createWrapper, HYDRATE} from 'next-redux-wrapper';
 type Faq = {
 
     _id: string;
@@ -45,7 +49,7 @@ export const deleteFaq = createAsyncThunk(
     }
   );
 
-const faqSlice = createSlice({
+export const faqSlice = createSlice({
   name: 'faq',
   initialState: { faqs: [], status: 'idle', error: null } as FaqState,
   reducers: {
@@ -61,10 +65,11 @@ const faqSlice = createSlice({
 
         state.status = 'succeeded';
         state.faqs = action.payload;
+        console.log("ran",state.faqs );
 
       })
       .addCase(fetchFaqs.rejected, (state, action) => {
-       
+
         state.status = 'failed';
         state.error = action.error.message || null;
       })
@@ -86,7 +91,14 @@ const faqSlice = createSlice({
         if (existingFaq) {
           state.faqs = state.faqs.filter((faq) => faq._id !== faqId);
         }
-      });
+      })
+      .addMatcher(
+        (action) => action.type === HYDRATE && action.payload?.faq,
+        (state, action) => {
+          state.faqs = action.payload.faq.faqs;
+          state.status = 'succeeded';
+        },
+      );
   },
 });
 

@@ -64,7 +64,7 @@ const AddQuestion = () => {
     };
     try {
       await dispatch(createNewFaq(newQuestion) );
-      console.log("Question added successfully");
+      setOpen(false)
     } catch (err) {
       console.error("Error adding question:", err);
     }

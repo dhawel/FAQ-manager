@@ -18,7 +18,7 @@ import TableHead from '@mui/material/TableHead';
 import ActionButton from './ActionButton';
 
 //Redux
-import { useDispatch, useSelector ,AppDispatch} from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { fetchFaqs ,FaqState} from '@/redux/slices/faqSlicenew';
 interface TablePaginationActionsProps {
   count: number;
@@ -31,20 +31,7 @@ interface TablePaginationActionsProps {
 }
 
 function TablePaginationActions(props: TablePaginationActionsProps) {
-  const dispatch = useDispatch<AppDispatch>();
-  const faqs = useSelector((state: FaqState) => state.faqs);
-  const faqStatus = useSelector((state: FaqState) => state.status);
-  const faqError = useSelector((state: FaqState) => state.error);
 
-
-
-  useEffect(() => {
-
-     dispatch(fetchFaqs());
-
-
-
-  }, [dispatch]);
 
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
@@ -101,23 +88,21 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   );
 }
 
-function createData(questionNumber: number, question: string, category: string,status:string,action:string) {
-  return {questionNumber, question, category,status,action };
-}
 
-const rows = [
-  createData(1, "demo question 1", "General","published","ac"),
-  createData(2, "demo question 2", "General","Pending","ac"),
-  createData(3, "demo question 3", "Account","published","ac"),
-  createData(4, "demo question 4", "General","published","ac"),
-  createData(5, "demo question 5", "General","published","ac"),
-  createData(6, "demo question 6", "General","published","ac"),
-  createData(7, "demo question 7", "General","published","ac"),
-  createData(8, "demo question 8", "General","published","ac"),
+export default function FaqTable({faqs}) {
+  const dispatch = useDispatch();
+  // const faqs = useSelector((state: FaqState) => state.faqs);
+  const faqStatus = useSelector((state: FaqState) => state.status);
+  const faqError = useSelector((state: FaqState) => state.error);
 
-]
 
-export default function CustomPaginationActionsTable() {
+    const rows= faqs.map((faq,index)=>{
+      const {question,category,status}=faq
+     return {index,question,category,status}
+    })
+
+
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -158,7 +143,7 @@ export default function CustomPaginationActionsTable() {
           ).map((row) => (
             <TableRow key={row.questionNumber}>
               <TableCell style={{ width:50 }} component="th" scope="row">
-                {row.questionNumber}
+                {row.index+1}
               </TableCell>
               <TableCell style={{ width: 160 }} align="right">
                 {row.question}

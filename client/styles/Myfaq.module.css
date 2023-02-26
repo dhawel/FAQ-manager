@@ -18,7 +18,7 @@
   flex-direction: column;
   justify-content: space-between;
 
-  background-color: #7fffd4;
+  /* background-color: rgb(255, 255, 255); */
 }
 
 .container div {
@@ -53,7 +53,7 @@
 }
 .modal {
   /* background-color: bisque; */
-  
+
   padding: 5px;
   margin: 5px;
   flex-grow: 2;
