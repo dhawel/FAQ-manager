@@ -32,7 +32,7 @@ const AddQuestion = () => {
   const handleClose = () => setOpen(false);
 
   let [Question, setQuestion] = useState("");
-  let [Category, setCategory] = useState("");
+  let [Category, setCategory] = useState("General");
 
   const dispatch= useDispatch();
   // const { questions, loading } = useSelector((state) => state.question);
