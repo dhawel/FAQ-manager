@@ -5,10 +5,11 @@ const BASE_URL = "https://faq-manager-production.up.railway.app"; // Replace wit
 const faqApi = {
   getFaqs: async () => {
     const response = await axios.get(`${BASE_URL}/faqs`);
+
     return response.data;
   },
   postFaq: async (newFaq) => {
-    console.log("post hit", newFaq);
+
     const response = await axios.post(`${BASE_URL}/faqs`, newFaq);
     return response.data;
   },

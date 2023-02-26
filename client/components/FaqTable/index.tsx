@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React ,{useEffect} from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
@@ -16,6 +16,10 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import TableHead from '@mui/material/TableHead';
 import ActionButton from './ActionButton';
+
+//Redux
+import { useDispatch, useSelector ,AppDispatch} from 'react-redux'
+import { fetchFaqs ,FaqState} from '@/redux/slices/faqSlicenew';
 interface TablePaginationActionsProps {
   count: number;
   page: number;
@@ -27,6 +31,21 @@ interface TablePaginationActionsProps {
 }
 
 function TablePaginationActions(props: TablePaginationActionsProps) {
+  const dispatch = useDispatch<AppDispatch>();
+  const faqs = useSelector((state: FaqState) => state.faqs);
+  const faqStatus = useSelector((state: FaqState) => state.status);
+  const faqError = useSelector((state: FaqState) => state.error);
+
+
+
+  useEffect(() => {
+
+     dispatch(fetchFaqs());
+
+
+
+  }, [dispatch]);
+
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
 

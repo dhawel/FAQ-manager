@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import questionReducer from "./slices/faqSlice";
+import faqReducer from "./slices/faqSlicenew";
 
 export const store = configureStore({
   reducer: {
-    quetion: questionReducer,
+    faq: faqReducer,
   },
 });
 
