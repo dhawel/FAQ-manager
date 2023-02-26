@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./index.module.css";
-interface AddQuestionButtonProps {
+interface SearchProps {
 
     clickHandler: () => void;
     type?: "button" | "submit" | "reset";
@@ -8,7 +8,8 @@ interface AddQuestionButtonProps {
 
     children?: React.ReactNode;
   }
-const AddQuestionButton: React.FC<AddQuestionButtonProps>  = ({  clickHandler, type = "button", isDisabled = false, children })=> {
+
+const Search: React.FC<SearchProps>  = ({  clickHandler, type = "button", isDisabled = false, children })=> {
 
 
   return (
@@ -25,4 +26,4 @@ const AddQuestionButton: React.FC<AddQuestionButtonProps>  = ({  clickHandler, t
 };
 
 
-export default AddQuestionButton;
+export default Search;

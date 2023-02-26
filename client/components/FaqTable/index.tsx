@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React ,{useEffect} from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
@@ -14,7 +14,12 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
+import TableHead from '@mui/material/TableHead';
+import ActionButton from './ActionButton';
 
+//Redux
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchFaqs ,FaqState} from '@/redux/slices/faqSlicenew';
 interface TablePaginationActionsProps {
   count: number;
   page: number;
@@ -26,6 +31,8 @@ interface TablePaginationActionsProps {
 }
 
 function TablePaginationActions(props: TablePaginationActionsProps) {
+
+
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
 
@@ -81,27 +88,21 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   );
 }
 
-function createData(name: string, calories: number, fat: number) {
-  return { name, calories, fat };
-}
 
-const rows = [
-  createData('Cupcake', 305, 3.7),
-  createData('Donut', 452, 25.0),
-  createData('Eclair', 262, 16.0),
-  createData('Frozen yoghurt', 159, 6.0),
-  createData('Gingerbread', 356, 16.0),
-  createData('Honeycomb', 408, 3.2),
-  createData('Ice cream sandwich', 237, 9.0),
-  createData('Jelly Bean', 375, 0.0),
-  createData('KitKat', 518, 26.0),
-  createData('Lollipop', 392, 0.2),
-  createData('Marshmallow', 318, 0),
-  createData('Nougat', 360, 19.0),
-  createData('Oreo', 437, 18.0),
-].sort((a, b) => (a.calories < b.calories ? -1 : 1));
+export default function FaqTable({faqs}) {
+  const dispatch = useDispatch();
+  // const faqs = useSelector((state: FaqState) => state.faqs);
+  const faqStatus = useSelector((state: FaqState) => state.status);
+  const faqError = useSelector((state: FaqState) => state.error);
 
-export default function CustomPaginationActionsTable() {
+
+    const rows= faqs.map((faq,index)=>{
+      const {question,category,status}=faq
+     return {index,question,category,status}
+    })
+
+
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -124,22 +125,38 @@ export default function CustomPaginationActionsTable() {
   };
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{ borderRadius:3}}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+      <TableHead>
+      <TableRow>
+            <TableCell> #</TableCell>
+            <TableCell align="right">Question</TableCell>
+            <TableCell align="right">Category</TableCell>
+            <TableCell align="right">Status</TableCell>
+            <TableCell align="right">Action</TableCell>
+          </TableRow>
+        </TableHead>
         <TableBody>
           {(rowsPerPage > 0
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row) => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.name}
+            <TableRow key={row.questionNumber}>
+              <TableCell style={{ width:50 }} component="th" scope="row">
+                {row.index+1}
               </TableCell>
               <TableCell style={{ width: 160 }} align="right">
-                {row.calories}
+                {row.question}
               </TableCell>
               <TableCell style={{ width: 160 }} align="right">
-                {row.fat}
+                {row.category}
+              </TableCell>
+              <TableCell style={{ width: 160 }} align="right">
+                {row.status}
+              </TableCell>
+              <TableCell style={{ width: 160 }} align="right">
+
+                <ActionButton rowData={row} />
               </TableCell>
             </TableRow>
           ))}

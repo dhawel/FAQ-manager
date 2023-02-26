@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
 
-const SearchBox = () => {
+const Footer = () => {
   return (
-    <div>SearchBox</div>
-  )
-}
+    <footer style={{ backgroundColor: 'rgb(232, 234, 245)', color: '#000', padding: '20px' }}>
+    <div style={{ float: 'left' }}>copyright @ iLabs. All Rights Reserved</div>
+    <div style={{ float: 'right' }}>@ Privacy Policy | Terms of Service | Help Center</div>
+  </footer>
+  );
+};
 
-export default SearchBox
+export default Footer;
