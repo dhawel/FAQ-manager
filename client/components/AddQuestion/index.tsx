@@ -2,16 +2,17 @@ import { useState } from "react";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+
 import Modal from "@mui/material/Modal";
 import AddQuestionButton from "./AddQuestionButton";
 import MenuItem from "@mui/material/MenuItem";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import DeleteIcon from "@mui/icons-material/Delete";
 
-import { Input } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch } from "../../redux/store";
+
 import TextField from "@mui/material/TextField";
-
+import { postQuestion } from "../../redux/slices/questionSlice";
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -31,6 +32,10 @@ const AddQuestion = () => {
 
   let [Question, setQuestion] = useState("");
   let [Category, setCategory] = useState("");
+
+  const dispatch:AppDispatch  = useDispatch();
+  // const { questions, loading } = useSelector((state) => state.question);
+
   const Catagories = [
     {
       value: "About Company",
@@ -49,8 +54,19 @@ const AddQuestion = () => {
       label: "Product",
     },
   ];
-  const SubmitBtn = () => {
-    console.log("sumbittt",Question,Category);
+  const SubmitBtn = async () => {
+    console.log("sumbittt", Question, Category);
+    const qquestion = {
+      question: Question,
+      catagory: Category,
+      status: "Pending",
+    };
+    try {
+      await dispatch(postQuestion(qquestion));
+      console.log("Question added successfully");
+    } catch (err) {
+      console.error("Error adding question:", err);
+    }
   };
 
   return (
@@ -69,7 +85,6 @@ const AddQuestion = () => {
         aria-describedby="add new faq question"
       >
         <Box sx={style}>
-         
           <TextField
             fullWidth
             label="Question"
