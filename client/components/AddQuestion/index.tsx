@@ -9,7 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 import { useDispatch, useSelector } from "react-redux";
-import type { AppDispatch } from "../../redux/store";
+
 
 import TextField from "@mui/material/TextField";
 // import { postQuestion } from "../../redux/slices/faqSlice";
@@ -34,7 +34,7 @@ const AddQuestion = () => {
   let [Question, setQuestion] = useState("");
   let [Category, setCategory] = useState("");
 
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch= useDispatch();
   // const { questions, loading } = useSelector((state) => state.question);
 
   const Catagories = [
@@ -56,7 +56,7 @@ const AddQuestion = () => {
     },
   ];
   const SubmitBtn = async () => {
-   
+
     const newQuestion = {
       question: Question,
       category: Category,
