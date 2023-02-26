@@ -125,7 +125,7 @@ export default function FaqTable({faqs}) {
   };
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{ borderRadius:3}}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
       <TableHead>
       <TableRow>

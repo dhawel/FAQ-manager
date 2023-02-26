@@ -35,6 +35,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  margin: 1px 25px;
 }
 .search {
   display: flex;

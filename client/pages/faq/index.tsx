@@ -9,6 +9,7 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Input from "@mui/material/Input";
 import Button from "@mui/material/Button";
+import Footer from "@/components/Layout/Footer";
 //Redux
 import { connect } from "react-redux";
 import { wrapper, State } from "@/redux/store";
@@ -57,7 +58,9 @@ const Faq = ({ faq }) => {
         <div className={styles.table}>
           <FaqTable faqs={faq.faqs} />
         </div>
-        <div className={styles.footer}>footer</div>
+        <div className={styles.footer}>
+          <Footer/>
+        </div>
       </div>
     </>
   );

@@ -31,7 +31,7 @@ function ActionButton(props) {
   };
 
   function handleListItemClick(params: type) {
-    console.log("foo");
+
   }
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
@@ -41,6 +41,7 @@ function ActionButton(props) {
         <FontAwesomeIcon icon={faEllipsisV} />
       </IconButton>
       <Popover
+
         id={id}
         open={open}
         anchorEl={anchorEl}
@@ -51,7 +52,7 @@ function ActionButton(props) {
         }}
 
       >
-        <List>
+        <List >
           <ListItem disableGutters>
             <ListItemButton
               autoFocus
