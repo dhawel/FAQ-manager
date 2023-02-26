@@ -12,7 +12,8 @@ import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch } from "../../redux/store";
 
 import TextField from "@mui/material/TextField";
-import { postQuestion } from "../../redux/slices/questionSlice";
+// import { postQuestion } from "../../redux/slices/faqSlice";
+import { createNewFaq } from "@/redux/slices/faqSlicenew";
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -33,7 +34,7 @@ const AddQuestion = () => {
   let [Question, setQuestion] = useState("");
   let [Category, setCategory] = useState("");
 
-  const dispatch:AppDispatch  = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   // const { questions, loading } = useSelector((state) => state.question);
 
   const Catagories = [
@@ -56,13 +57,13 @@ const AddQuestion = () => {
   ];
   const SubmitBtn = async () => {
     console.log("sumbittt", Question, Category);
-    const qquestion = {
+    const newQuestion = {
       question: Question,
-      catagory: Category,
+      category: Category,
       status: "Pending",
     };
     try {
-      await dispatch(postQuestion(qquestion));
+      await dispatch(createNewFaq(newQuestion) );
       console.log("Question added successfully");
     } catch (err) {
       console.error("Error adding question:", err);
