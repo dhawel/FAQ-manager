@@ -1,5 +1,5 @@
 import React from "react";
-
+import styles from "./index.module.css";
 interface AddQuestionButtonProps {
 
     clickHandler: () => void;
@@ -13,7 +13,7 @@ const AddQuestionButton: React.FC<AddQuestionButtonProps>  = ({  clickHandler, t
 
   return (
     <button
-
+    className={`${styles.btn}`}
     onClick={clickHandler}
     type={type}
     disabled={isDisabled}
