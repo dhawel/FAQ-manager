@@ -28,8 +28,8 @@ export const getFaqById = async (req: Request, res: Response) => {
 
   export const createFaq = async (req: Request, res: Response) => {
     try {
-      const { faq, category,status } = req.body;
-      const newFaq: IFaq = new Faq({ faq, category ,status});
+      const { question, category,status } = req.body;
+      const newFaq: IFaq = new Faq({ question, category ,status});
       await newFaq.save();
       res.status(200).json(newFaq);
     } catch (err) {
@@ -39,10 +39,10 @@ export const getFaqById = async (req: Request, res: Response) => {
 
   export const updateFaq = async (req: Request, res: Response) => {
     try {
-      const { faq, answer,category ,status } = req.body;
+      const { question, answer,category ,status } = req.body;
       const updatedFaq = await Faq.findByIdAndUpdate(
         req.params.id,
-        { faq, answer ,category,status },
+        { question, answer ,category,status },
         { new: true }
       );
       if (!updatedFaq) {
