@@ -22,10 +22,12 @@
 }
 
 .container div {
-  border: 1px solid #000000;
-  padding: 20px;
+  /* border: 1px solid #000000; */
+  padding: 10px;
 }
 .table {
+  margin: 5px 30px;
+
 }
 .header {
   display: flex;
@@ -40,6 +42,12 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  background-color: white;
+  padding: 0;
+  margin: 5px 40px;
+
+  border-radius: 8px;
+
 }
 .searchbox {
   padding: 5px;
@@ -61,15 +69,20 @@
   flex-grow: 2;
 }
 .modal {
+
   /* background-color: bisque; */
 
   padding: 5px;
   margin: 5px;
+  display: flex;
+  justify-content: flex-end;
   flex-grow: 2;
 }
 .tittle {
-  background-color: darkcyan;
+  /* background-color: darkcyan; */
   padding: 5px;
   margin: 5px;
+  color: black;
+  font-size: 18;
   flex-grow: 5;
 }

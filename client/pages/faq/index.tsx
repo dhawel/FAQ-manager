@@ -23,6 +23,7 @@ const Faq = ({ faq }) => {
         <div className={styles.header}>
           <h2 className={styles.tittle}>FAQ Manger - iLabs </h2>
           <div className={styles.modal}>
+
             <AddQuestion />
           </div>
         </div>
