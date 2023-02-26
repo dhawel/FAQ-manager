@@ -16,4 +16,5 @@ server/.env
 server/package-lock.json
 
 client/node_modules
+client/.next
 client/package-lock.json
