@@ -86,12 +86,14 @@ export const faqSlice = createSlice({
       //     existingFaq.status = updatedFaq.status;
       //   }
       // })
-      .addCase(deleteFaq.fulfilled, (state, action: PayloadAction<string>) => {
-        const faqId = action.payload;
-        console.log("deletfaq",faqId);
+      .addCase(deleteFaq.fulfilled, (state, action: PayloadAction<Faq>) => {
+        const faqId = action.payload._id;
+
         const existingFaq = state.faqs.find((faq) => faq._id === faqId);
+
         if (existingFaq) {
           state.faqs = state.faqs.filter((faq) => faq._id !== faqId);
+          
         }
       })
       .addMatcher(
