@@ -1,27 +1,33 @@
 import React from "react";
 import styles from "./index.module.css";
-interface SearchProps {
+import Button from "@mui/material/Button";
 
-    clickHandler: () => void;
-    type?: "button" | "submit" | "reset";
-    isDisabled?: boolean;
 
-    children?: React.ReactNode;
-  }
-
-const Search: React.FC<SearchProps>  = ({  clickHandler, type = "button", isDisabled = false, children })=> {
+const Search = ()=> {
 
 
   return (
-    <button
-    className={`${styles.btn}`}
-    onClick={clickHandler}
-    type={type}
-    disabled={isDisabled}
+    <>
+    <div className={styles.searchbox}>
 
+    <input type="text" placeholder="Search.." name="search"></input>
+
+  </div>
+  <div className={styles.searchbutton}>
+    <Button
+      fullWidth
+      sx={{
+        fontSize: 12,
+        height: 50,
+        backgroundColor: "rgb(63, 81, 181) ",
+      }}
+      variant="contained"
+      size="medium"
     >
-      {children}
-    </button>
+      Search
+    </Button>
+  </div>
+  </>
   );
 };
 

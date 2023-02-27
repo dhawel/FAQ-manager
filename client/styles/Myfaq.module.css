@@ -50,25 +50,6 @@
   border-radius: 8px;
 
 }
-.searchbox {
-  padding: 5px;
-  margin: 5px;
-  flex-grow: 5;
-}
-.searchbox input[type=text] {
-  padding: 15px;
-  font-size: 17px;
-  border: 1px solid grey;
-  border-radius: 5px;
-  float: left;
-  width: 100%;
-  background: rgb(232, 234, 246);
-}
-.searchbutton {
-  padding: 5px;
-  margin: 5px;
-  flex-grow: 2;
-}
 .modal {
 
   /* background-color: bisque; */
