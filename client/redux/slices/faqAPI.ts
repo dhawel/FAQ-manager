@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://faq-manager-production.up.railway.app"; // Replace with your API server URL
+const BASE_URL = process.env.BASE_URL
 
 const faqApi = {
   getFaqs: async () => {
