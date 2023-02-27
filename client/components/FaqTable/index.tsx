@@ -88,8 +88,15 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   );
 }
 
-
-export default function FaqTable({faqs}) {
+type FaqTableProps = {
+  faqs: Array<{
+    _id: number;
+    category: string;
+    question: string;
+    status: string;
+  }>;
+};
+export default function FaqTable({faqs}:FaqTableProps ) {
   const dispatch = useDispatch();
   // const faqs = useSelector((state: FaqState) => state.faqs);
   const faqStatus = useSelector((state: FaqState) => state.status);
@@ -141,7 +148,7 @@ export default function FaqTable({faqs}) {
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row) => (
-            <TableRow key={row.questionNumber}>
+            <TableRow key={row.index}>
               <TableCell style={{ width:50 }} component="th" scope="row">
                 {row.index+1}
               </TableCell>
