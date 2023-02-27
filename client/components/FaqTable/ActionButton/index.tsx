@@ -1,18 +1,16 @@
 import * as React from "react";
 
-import { faEllipsisV } from "@fortawesome/free-solid-svg-icons/faEllipsisV";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import IconButton from "@mui/material/IconButton";
 import Popover from "@mui/material/Popover";
-import Typography from "@mui/material/Typography";
-import ActionPopoverButton from "../ActionPopoverButton";
+
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import Avatar from "@mui/material/Avatar";
-import AddIcon from "@mui/icons-material/Add";
+
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
@@ -62,7 +60,8 @@ function ActionButton({ rowData }: ActionButtonProps) {
   return (
     <>
       <IconButton onClick={handleClick} aria-label="Action">
-        <FontAwesomeIcon icon={faEllipsisV} />
+
+        <MoreVertIcon />
       </IconButton>
       <Popover
         id={id}
