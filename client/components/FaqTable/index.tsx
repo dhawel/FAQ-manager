@@ -16,7 +16,7 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import TableHead from '@mui/material/TableHead';
 import ActionButton from './ActionButton';
-import StatusButton from './StatusButton';
+
 //Redux
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchFaqs ,FaqState} from '@/redux/slices/faqSlicenew';
@@ -88,15 +88,8 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   );
 }
 
-type FaqTableProps = {
-  faqs: Array<{
-    _id: number;
-    category: string;
-    question: string;
-    status: string;
-  }>;
-};
-export default function FaqTable({faqs}: FaqTableProps) {
+
+export default function FaqTable({faqs}) {
   const dispatch = useDispatch();
   // const faqs = useSelector((state: FaqState) => state.faqs);
   const faqStatus = useSelector((state: FaqState) => state.status);
@@ -148,7 +141,7 @@ export default function FaqTable({faqs}: FaqTableProps) {
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row) => (
-            <TableRow key={row.index}>
+            <TableRow key={row.questionNumber}>
               <TableCell style={{ width:50 }} component="th" scope="row">
                 {row.index+1}
               </TableCell>
@@ -159,8 +152,7 @@ export default function FaqTable({faqs}: FaqTableProps) {
                 {row.category}
               </TableCell>
               <TableCell style={{ width: 160 }} align="right">
-                <StatusButton status={row.status}/>
-
+                {row.status}
               </TableCell>
               <TableCell style={{ width: 160 }} align="right">
 
