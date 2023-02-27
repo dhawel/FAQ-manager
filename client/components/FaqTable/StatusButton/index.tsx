@@ -10,7 +10,7 @@ const StatusButton: React.FC<StatusButtonProps> = ({status,children}) => {
 
     function getButtonStyle(status:string) {
         if(status =="Published"){
-            console.log("bam");
+           
             return `${styles.btnPublish}`
         }
         return `${styles.btn}`
