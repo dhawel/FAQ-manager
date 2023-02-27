@@ -1,19 +1,13 @@
-import { GetStaticPaths, GetStaticProps } from "next";
-import SearchButton from "@/components/SearchButton";
 // import SearchBox from "@/components/SearchBox";
 import AddQuestion from "@/components/AddQuestion";
 import FaqTable from "@/components/FaqTable";
-import styles from "@/styles/Myfaq.module.css";
-import Search from "@/components/Search";
-import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
-import Input from "@mui/material/Input";
-import Button from "@mui/material/Button";
 import Footer from "@/components/Layout/Footer";
+import Search from "@/components/Search";
+import styles from "@/styles/Faq.module.css";
 //Redux
-import { connect } from "react-redux";
-import { wrapper, State } from "@/redux/store";
 import { fetchFaqs } from "@/redux/slices/faqSlice";
+import { State, wrapper } from "@/redux/store";
+import { connect } from "react-redux";
 
 const Faq = ({ faq }) => {
   const ariaLabel = { "aria-label": "description" };
@@ -29,8 +23,7 @@ const Faq = ({ faq }) => {
           </div>
         </div>
         <div className={styles.search}>
-          <Search/>
-          
+          <Search />
         </div>
         <div className={styles.table}>
           <FaqTable faqs={faq.faqs} />

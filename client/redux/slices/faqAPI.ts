@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = process.env.BASE_URL
+const BASE_URL = process.env.BASE_URL;
 
 const faqApi = {
   getFaqs: async () => {
@@ -9,7 +9,6 @@ const faqApi = {
     return response.data;
   },
   postFaq: async (newFaq) => {
-
     const response = await axios.post(`${BASE_URL}/faqs`, newFaq);
     return response.data;
   },
