@@ -1,0 +1,33 @@
+
+
+.btn{
+
+    background-color: aquamarine;
+    width: 80px;
+    padding: 11px ;
+    border: none;
+    margin: 1px;
+
+    text-align: center;
+    text-decoration: none;
+    font-size: 13px;
+    border-radius: 5px;
+
+
+    background-color:rgb(197, 202, 233);
+}
+.btnPublish{
+    background-color: aquamarine;
+    width: 80px;
+    padding: 11px ;
+    border: none;
+    margin: 1px;
+
+    text-align: center;
+    text-decoration: none;
+    font-size: 13px;
+    border-radius: 5px;
+
+
+    background-color:rgb(76, 175, 80);
+}
