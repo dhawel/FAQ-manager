@@ -15,8 +15,9 @@ import { connect } from "react-redux";
 import { wrapper, State } from "@/redux/store";
 import { fetchFaqs } from "@/redux/slices/faqSlicenew";
 
-const Faq = ({ faq }) => {
+const Faq = ({faq}) => {
   const ariaLabel = { "aria-label": "description" };
+
   return (
     <>
       {/* <SearchButton/> */}
@@ -68,13 +69,12 @@ const Faq = ({ faq }) => {
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ params }) => {
-      // we can set the initial state from here
-      // we are setting to false but you can run your custom logic here
-      await store.dispatch(fetchFaqs());
-      // console.log("State on server", store.getState());
+
+      const serverState=await store.dispatch(fetchFaqs());
+
       return {
         props: {
-          authState: false,
+          faqsServer: serverState.payload,
         },
       };
     }

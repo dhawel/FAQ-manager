@@ -16,8 +16,24 @@ import AddIcon from "@mui/icons-material/Add";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-function ActionButton(props) {
-  // console.log("orooo", props.rowData);
+//Redux
+import { useDispatch, useSelector } from "react-redux";
+import { deleteFaq } from "@/redux/slices/faqSlicenew";
+import { AppDispatch } from "@/redux/store";
+
+interface ActionButtonProps{
+  rowData:{
+    index: number;
+    _id:string;
+    question: string;
+    category: string;
+    status: string;
+}
+}
+
+function ActionButton({rowData}:ActionButtonProps) {
+  const dispatch= useDispatch<AppDispatch>();
+
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null
   );
@@ -33,6 +49,16 @@ function ActionButton(props) {
   function handleListItemClick(params: type) {
 
   }
+
+  const handleDeleteClick = async () => {
+    try {
+      await dispatch(deleteFaq(rowData._id));
+      handleClose();
+    } catch (err) {
+      console.error("Error deleting question:", err);
+    }
+  };
+
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
   return (
@@ -79,7 +105,7 @@ function ActionButton(props) {
           <ListItem disableGutters>
             <ListItemButton
               autoFocus
-              onClick={() => handleListItemClick("addAccount")}
+              onClick={() => handleDeleteClick()}
             >
               <ListItemAvatar>
                 <DeleteOutlineIcon sx={{ fontSize: 20 }} />

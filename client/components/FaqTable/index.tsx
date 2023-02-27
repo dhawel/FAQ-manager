@@ -91,7 +91,7 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
 
 type FaqTableProps = {
   faqs: Array<{
-    _id: number;
+    _id: string;
     category: string;
     question: string;
     status: string;
@@ -105,8 +105,8 @@ export default function FaqTable({faqs}:FaqTableProps ) {
 
 
     const rows= faqs.map((faq,index)=>{
-      const {question,category,status}=faq
-     return {index,question,category,status}
+      const {question,category,status,_id}=faq
+     return {index,_id,question,category,status}
     })
 
 
