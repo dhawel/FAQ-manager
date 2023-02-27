@@ -10,10 +10,9 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 import { useDispatch, useSelector } from "react-redux";
 
-
 import TextField from "@mui/material/TextField";
 // import { postQuestion } from "../../redux/slices/faqSlice";
-import { createNewFaq } from "@/redux/slices/faqSlicenew";
+import { createNewFaq } from "@/redux/slices/faqSlice";
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -34,7 +33,7 @@ const AddQuestion = () => {
   let [Question, setQuestion] = useState("");
   let [Category, setCategory] = useState("General");
 
-  const dispatch= useDispatch();
+  const dispatch = useDispatch();
   // const { questions, loading } = useSelector((state) => state.question);
 
   const Catagories = [
@@ -56,15 +55,14 @@ const AddQuestion = () => {
     },
   ];
   const SubmitBtn = async () => {
-
     const newQuestion = {
       question: Question,
       category: Category,
       status: "Pending",
     };
     try {
-      await dispatch(createNewFaq(newQuestion) );
-      setOpen(false)
+      await dispatch(createNewFaq(newQuestion));
+      setOpen(false);
     } catch (err) {
       console.error("Error adding question:", err);
     }

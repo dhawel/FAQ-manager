@@ -18,21 +18,21 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 //Redux
 import { useDispatch, useSelector } from "react-redux";
-import { deleteFaq } from "@/redux/slices/faqSlicenew";
+import { deleteFaq } from "@/redux/slices/faqSlice";
 import { AppDispatch } from "@/redux/store";
 
-interface ActionButtonProps{
-  rowData:{
+interface ActionButtonProps {
+  rowData: {
     index: number;
-    _id:string;
+    _id: string;
     question: string;
     category: string;
     status: string;
-}
+  };
 }
 
-function ActionButton({rowData}:ActionButtonProps) {
-  const dispatch= useDispatch<AppDispatch>();
+function ActionButton({ rowData }: ActionButtonProps) {
+  const dispatch = useDispatch<AppDispatch>();
 
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null
@@ -46,9 +46,7 @@ function ActionButton({rowData}:ActionButtonProps) {
     setAnchorEl(null);
   };
 
-  function handleListItemClick(params: type) {
-
-  }
+  function handleListItemClick(params: type) {}
 
   const handleDeleteClick = async () => {
     try {
@@ -67,7 +65,6 @@ function ActionButton({rowData}:ActionButtonProps) {
         <FontAwesomeIcon icon={faEllipsisV} />
       </IconButton>
       <Popover
-
         id={id}
         open={open}
         anchorEl={anchorEl}
@@ -76,18 +73,20 @@ function ActionButton({rowData}:ActionButtonProps) {
           vertical: "bottom",
           horizontal: "left",
         }}
-
       >
-        <List >
+        <List>
           <ListItem disableGutters>
             <ListItemButton
               autoFocus
               onClick={() => handleListItemClick("addAccount")}
             >
-              <ListItemAvatar  >
-                <VisibilityIcon  sx={{ fontSize: 20 }}/>
+              <ListItemAvatar>
+                <VisibilityIcon sx={{ fontSize: 20 }} />
               </ListItemAvatar>
-              <ListItemText  primaryTypographyProps={{ fontSize: 12 }} primary="View" />
+              <ListItemText
+                primaryTypographyProps={{ fontSize: 12 }}
+                primary="View"
+              />
             </ListItemButton>
           </ListItem>
 
@@ -99,18 +98,21 @@ function ActionButton({rowData}:ActionButtonProps) {
               <ListItemAvatar>
                 <CheckCircleOutlineIcon sx={{ fontSize: 20 }} />
               </ListItemAvatar>
-              <ListItemText primaryTypographyProps={{ fontSize: 12 }} primary="Deactivate" />
+              <ListItemText
+                primaryTypographyProps={{ fontSize: 12 }}
+                primary="Deactivate"
+              />
             </ListItemButton>
           </ListItem>
           <ListItem disableGutters>
-            <ListItemButton
-              autoFocus
-              onClick={() => handleDeleteClick()}
-            >
+            <ListItemButton autoFocus onClick={() => handleDeleteClick()}>
               <ListItemAvatar>
                 <DeleteOutlineIcon sx={{ fontSize: 20 }} />
               </ListItemAvatar>
-              <ListItemText primaryTypographyProps={{ fontSize: 12 }}  primary="Delete" />
+              <ListItemText
+                primaryTypographyProps={{ fontSize: 12 }}
+                primary="Delete"
+              />
             </ListItemButton>
           </ListItem>
         </List>
