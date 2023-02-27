@@ -1,14 +1,6 @@
-import {
-  createAsyncThunk,
-  createSlice,
-  PayloadAction,
-  configureStore,
-  ThunkAction,
-} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { HYDRATE } from "next-redux-wrapper";
 import faqApi from "./faqAPI";
-import { AppState } from "../store";
-import { Action } from "redux";
-import { createWrapper, HYDRATE } from "next-redux-wrapper";
 type Faq = {
   _id: string;
   question: string;

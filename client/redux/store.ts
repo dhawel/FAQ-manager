@@ -1,11 +1,11 @@
 import {
-  configureStore,
-  ThunkAction,
   Action,
+  configureStore,
   Dispatch,
+  ThunkAction,
 } from "@reduxjs/toolkit";
+import { createWrapper } from "next-redux-wrapper";
 import faqReducer from "./slices/faqSlice";
-import { createWrapper, MakeStore } from "next-redux-wrapper";
 // export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = Dispatch<Action>;
 const makeStore = () =>

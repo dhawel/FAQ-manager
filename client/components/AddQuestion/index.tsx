@@ -1,14 +1,14 @@
-import { useState } from "react";
-import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import * as React from "react";
+import { useState } from "react";
 
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import MenuItem from "@mui/material/MenuItem";
 import Modal from "@mui/material/Modal";
 import AddQuestionButton from "./AddQuestionButton";
-import MenuItem from "@mui/material/MenuItem";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import TextField from "@mui/material/TextField";
 // import { postQuestion } from "../../redux/slices/faqSlice";

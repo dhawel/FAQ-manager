@@ -1,6 +1,5 @@
 import * as React from "react";
 
-
 import IconButton from "@mui/material/IconButton";
 import Popover from "@mui/material/Popover";
 
@@ -10,14 +9,14 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 //Redux
-import { useDispatch, useSelector } from "react-redux";
 import { deleteFaq } from "@/redux/slices/faqSlice";
 import { AppDispatch } from "@/redux/store";
+import { useDispatch } from "react-redux";
 
 interface ActionButtonProps {
   rowData: {
@@ -60,7 +59,6 @@ function ActionButton({ rowData }: ActionButtonProps) {
   return (
     <>
       <IconButton onClick={handleClick} aria-label="Action">
-
         <MoreVertIcon />
       </IconButton>
       <Popover
