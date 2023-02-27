@@ -13,9 +13,9 @@ import Footer from "@/components/Layout/Footer";
 //Redux
 import { connect } from "react-redux";
 import { wrapper, State } from "@/redux/store";
-import { fetchFaqs } from "@/redux/slices/faqSlice";
+import { fetchFaqs } from "@/redux/slices/faqSlicenew";
 
-const Faq = ({ faq }) => {
+const Faq = ({faq}) => {
   const ariaLabel = { "aria-label": "description" };
 
   return (
@@ -25,6 +25,7 @@ const Faq = ({ faq }) => {
         <div className={styles.header}>
           <h2 className={styles.tittle}>FAQ Manger - iLabs </h2>
           <div className={styles.modal}>
+
             <AddQuestion />
           </div>
         </div>
@@ -59,7 +60,7 @@ const Faq = ({ faq }) => {
           <FaqTable faqs={faq.faqs} />
         </div>
         <div className={styles.footer}>
-          <Footer />
+          <Footer/>
         </div>
       </div>
     </>
@@ -68,7 +69,8 @@ const Faq = ({ faq }) => {
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ params }) => {
-      const serverState = await store.dispatch(fetchFaqs());
+
+      const serverState=await store.dispatch(fetchFaqs());
 
       return {
         props: {
