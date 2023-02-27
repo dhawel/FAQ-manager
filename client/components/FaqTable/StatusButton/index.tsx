@@ -1,14 +1,32 @@
 import React from 'react'
-import Button from '@mui/material/Button';
+import styles from "./index.module.css";
 interface StatusButtonProps{
     status:string
     children?: React.ReactNode;
 }
 
 const StatusButton: React.FC<StatusButtonProps> = ({status,children}) => {
+
+
+    function getButtonStyle(status:string) {
+        if(status =="Published"){
+            console.log("bam");
+            return `${styles.btnPublish}`
+        }
+        return `${styles.btn}`
+    }
+    let btnStyle=getButtonStyle(status)
+
+
   return (
 
-    <Button sx={{backgroundColor:"rgb(76, 175, 80)",color:"rgb(0, 0, 0)",minWidth:20}} variant="contained" >{status}</Button>
+    <button
+    className={btnStyle}
+
+
+    >
+      {status}
+    </button>
   )
 }
 

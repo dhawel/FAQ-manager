@@ -16,6 +16,7 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import TableHead from '@mui/material/TableHead';
 import ActionButton from './ActionButton';
+import StatusButton from './StatusButton';
 
 //Redux
 import { useDispatch, useSelector } from 'react-redux'
@@ -159,7 +160,7 @@ export default function FaqTable({faqs}:FaqTableProps ) {
                 {row.category}
               </TableCell>
               <TableCell style={{ width: 160 }} align="right">
-                {row.status}
+              <StatusButton status={row.status}/>
               </TableCell>
               <TableCell style={{ width: 160 }} align="right">
 
