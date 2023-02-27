@@ -45,6 +45,7 @@ export const deleteFaq = createAsyncThunk(
     'faq/deleteFaq',
     async (faqId:string) => {
       const response = await faqApi.deleteFaq(faqId);
+      console.log("response delete",response );
       return response;
     }
   );
@@ -65,7 +66,7 @@ export const faqSlice = createSlice({
 
         state.status = 'succeeded';
         state.faqs = action.payload;
-       
+
 
       })
       .addCase(fetchFaqs.rejected, (state, action) => {
@@ -87,6 +88,7 @@ export const faqSlice = createSlice({
       // })
       .addCase(deleteFaq.fulfilled, (state, action: PayloadAction<string>) => {
         const faqId = action.payload;
+        console.log("deletfaq",faqId);
         const existingFaq = state.faqs.find((faq) => faq._id === faqId);
         if (existingFaq) {
           state.faqs = state.faqs.filter((faq) => faq._id !== faqId);
