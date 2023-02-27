@@ -21,6 +21,10 @@ const faqApi = {
     const response = await axios.delete(`${BASE_URL}/faqs/${faqId}`);
     return response.data;
   },
+  searchFaq: async (searchTerm) => {
+    const response = await axios.get(`${BASE_URL}/faqs/search/${searchTerm}`);
+    return response.data;
+  },
 };
 
 export default faqApi;

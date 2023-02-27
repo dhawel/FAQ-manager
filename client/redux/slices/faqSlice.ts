@@ -1,77 +1,79 @@
-
-import { createAsyncThunk, createSlice, PayloadAction,configureStore, ThunkAction } from '@reduxjs/toolkit';
-import faqApi from './faqAPI';
+import {
+  createAsyncThunk,
+  createSlice,
+  PayloadAction,
+  configureStore,
+  ThunkAction,
+} from "@reduxjs/toolkit";
+import faqApi from "./faqAPI";
 import { AppState } from "../store";
-import {Action} from 'redux';
-import {createWrapper, HYDRATE} from 'next-redux-wrapper';
+import { Action } from "redux";
+import { createWrapper, HYDRATE } from "next-redux-wrapper";
 type Faq = {
+  _id: string;
+  question: string;
+  category: string;
+  status: string;
+};
+type FaqWithoutId = Omit<Faq, "_id">;
+export interface FaqState {
+  faqs: Faq[];
+  status: "idle" | "loading" | "succeeded" | "failed";
+  error: string | null;
+}
 
-    _id: string;
-    question: string;
-    category: string;
-    status: string;
-  };
-  type FaqWithoutId = Omit<Faq, '_id'>;
-  export interface FaqState {
-    faqs: Faq[];
-    status: 'idle' | 'loading' | 'succeeded' | 'failed';
-    error: string | null;
-  }
+export const fetchFaqs = createAsyncThunk("faq/fetchFaqs", async () => {
+  const response = await faqApi.getFaqs();
 
-export const fetchFaqs = createAsyncThunk(
-  'faq/fetchFaqs',
-  async () => {
-    const response = await faqApi.getFaqs();
-
-    return response;
-  }
-);
+  return response;
+});
 
 export const createNewFaq = createAsyncThunk(
-  'faq/createNewFaq',
-  async (newFaq:FaqWithoutId ) => {
+  "faq/createNewFaq",
+  async (newFaq: FaqWithoutId) => {
     const response = await faqApi.postFaq(newFaq);
     return response;
   }
 );
 export const updateFaq = createAsyncThunk(
-    'faq/createNewFaq',
-    async (updateFaq:Faq) => {
-      const response = await faqApi.updateFaq(updateFaq);
-      return response;
-    }
-  );
+  "faq/createNewFaq",
+  async (updateFaq: Faq) => {
+    const response = await faqApi.updateFaq(updateFaq);
+    return response;
+  }
+);
 export const deleteFaq = createAsyncThunk(
-    'faq/deleteFaq',
-    async (faqId:string) => {
-      const response = await faqApi.deleteFaq(faqId);
-      console.log("response delete",response );
-      return response;
-    }
-  );
+  "faq/deleteFaq",
+  async (faqId: string) => {
+    const response = await faqApi.deleteFaq(faqId);
+
+    return response;
+  }
+);
+export const searchFaq = createAsyncThunk(
+  "faq/searchFaq",
+  async (searchTerm: string) => {
+    const response = await faqApi.searchFaq(searchTerm);
+
+    return response;
+  }
+);
 
 export const faqSlice = createSlice({
-  name: 'faq',
-  initialState: { faqs: [], status: 'idle', error: null } as FaqState,
-  reducers: {
-
-  },
+  name: "faq",
+  initialState: { faqs: [], status: "idle", error: null } as FaqState,
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchFaqs.pending, (state) => {
-
-        state.status = 'loading';
+        state.status = "loading";
       })
       .addCase(fetchFaqs.fulfilled, (state, action: PayloadAction<Faq[]>) => {
-
-        state.status = 'succeeded';
+        state.status = "succeeded";
         state.faqs = action.payload;
-
-
       })
       .addCase(fetchFaqs.rejected, (state, action) => {
-
-        state.status = 'failed';
+        state.status = "failed";
         state.error = action.error.message || null;
       })
       .addCase(createNewFaq.fulfilled, (state, action: PayloadAction<Faq>) => {
@@ -93,18 +95,20 @@ export const faqSlice = createSlice({
 
         if (existingFaq) {
           state.faqs = state.faqs.filter((faq) => faq._id !== faqId);
-          
         }
+      })
+      .addCase(searchFaq.fulfilled, (state, action: PayloadAction<Faq[]>) => {
+        state.status = "succeeded";
+        state.faqs = action.payload;
       })
       .addMatcher(
         (action) => action.type === HYDRATE && action.payload?.faq,
         (state, action) => {
           state.faqs = action.payload.faq.faqs;
-          state.status = 'succeeded';
-        },
+          state.status = "succeeded";
+        }
       );
   },
 });
-
 
 export default faqSlice.reducer;

@@ -1,29 +1,53 @@
-import React from "react";
+import React, { useState, ChangeEvent } from "react";
 import styles from "./index.module.css";
-interface SearchProps {
+import Button from "@mui/material/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { searchFaq } from "@/redux/slices/faqSlice";
+const Search = () => {
+  const [searchValue, setSearchValue] = useState("");
+  const dispatch = useDispatch();
+  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value);
+  };
 
-    clickHandler: () => void;
-    type?: "button" | "submit" | "reset";
-    isDisabled?: boolean;
+  const handleSearchClick = async () => {
+   
+    try {
+      await dispatch(searchFaq(searchValue));
 
-    children?: React.ReactNode;
-  }
+    } catch (err) {
+      console.log("Error adding question:", err);
+    }
 
-const Search: React.FC<SearchProps>  = ({  clickHandler, type = "button", isDisabled = false, children })=> {
-
-
+  };
   return (
-    <button
-    className={`${styles.btn}`}
-    onClick={clickHandler}
-    type={type}
-    disabled={isDisabled}
-
-    >
-      {children}
-    </button>
+    <>
+      <div className={styles.searchbox}>
+        <input
+          type="text"
+          placeholder="Search.."
+          name="search"
+          value={searchValue}
+          onChange={handleSearchChange}
+        ></input>
+      </div>
+      <div className={styles.searchbutton}>
+        <Button
+          fullWidth
+          sx={{
+            fontSize: 12,
+            height: 50,
+            backgroundColor: "rgb(63, 81, 181) ",
+          }}
+          variant="contained"
+          size="medium"
+          onClick={handleSearchClick}
+        >
+          Search
+        </Button>
+      </div>
+    </>
   );
 };
-
 
 export default Search;

@@ -1,20 +1,19 @@
-.btn{
-    display: flex;
-    align-items:center;
-    padding: 3px 10px;
-    border: none;
-    margin: 0px;
-    gap: 8px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 13px;
+.searchbox {
+    padding: 5px;
+    margin: 5px;
+    flex-grow: 5;
+  }
+.searchbox input[type=text] {
+    padding: 15px;
+    font-size: 17px;
+    border: 1px solid grey;
     border-radius: 5px;
-    justify-content:space-between;
-
-    background-color:rgb(197, 202, 233);
-}
-
-.btn:hover {
-    background-color: rgb(255, 255, 255); /* Green */
-
+    float: left;
+    width: 100%;
+    background: rgb(232, 234, 246);
+  }
+.searchbutton {
+    padding: 5px;
+    margin: 5px;
+    flex-grow: 2;
   }

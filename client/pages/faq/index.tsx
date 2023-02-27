@@ -29,31 +29,8 @@ const Faq = ({ faq }) => {
           </div>
         </div>
         <div className={styles.search}>
-          <div className={styles.searchbox}>
-            {/* <TextField
-                id="outlined-search"
-                fullWidth
-                label="Search"
-                type="search"
-                sx={{ fontSize: 12 ,height:30 }}
-              /> */}
-            <input type="text" placeholder="Search.." name="search"></input>
-            {/* <Input defaultValue="Hello world" inputProps={ariaLabel} /> */}
-          </div>
-          <div className={styles.searchbutton}>
-            <Button
-              fullWidth
-              sx={{
-                fontSize: 12,
-                height: 50,
-                backgroundColor: "rgb(63, 81, 181) ",
-              }}
-              variant="contained"
-              size="medium"
-            >
-              Search
-            </Button>
-          </div>
+          <Search/>
+          
         </div>
         <div className={styles.table}>
           <FaqTable faqs={faq.faqs} />
