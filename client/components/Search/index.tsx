@@ -1,16 +1,24 @@
 import React, { useState, ChangeEvent } from "react";
 import styles from "./index.module.css";
 import Button from "@mui/material/Button";
-
+import { useDispatch, useSelector } from "react-redux";
+import { searchFaq } from "@/redux/slices/faqSlice";
 const Search = () => {
-  const [searchValue, setSearchValue] = useState(""); 
-
+  const [searchValue, setSearchValue] = useState("");
+  const dispatch = useDispatch();
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
   };
 
-  const handleSearchClick = () => {
-    console.log("Search value:", searchValue);
+  const handleSearchClick = async () => {
+   
+    try {
+      await dispatch(searchFaq(searchValue));
+
+    } catch (err) {
+      console.log("Error adding question:", err);
+    }
+
   };
   return (
     <>

@@ -22,7 +22,7 @@ const faqApi = {
     return response.data;
   },
   searchFaq: async (searchTerm) => {
-    const response = await axios.delete(`${BASE_URL}/faqs/search/${searchTerm}`);
+    const response = await axios.get(`${BASE_URL}/faqs/search/${searchTerm}`);
     return response.data;
   },
 };
