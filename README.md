@@ -57,6 +57,7 @@ BASE_URL = "<backend API URL>"
 - `pages/`: Next.js pages that serve as the app's routes.
 - `public/`: Static assets used in the app.
 - `redux/`: Redux toolkit implementation the app's state.
+- `__test__`: Tests
 
 # Bankend
 
@@ -119,6 +120,7 @@ This app was built using the following technologies:
 
 - TypeScript
 - Nextjs
+- Jest
 - Material UI
 - Redux Toolkit
 - Node.js
