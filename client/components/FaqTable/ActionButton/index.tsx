@@ -54,7 +54,9 @@ function ActionButton({ rowData }: ActionButtonProps) {
     }
   };
   const handleViewItemClick= async () => {
-    router.push(`/faq/${rowData._id}`);
+
+    const newTab = window.open(`/faq/${rowData._id}`, '_blank');
+      newTab?.focus();
   };
 
   const open = Boolean(anchorEl);
