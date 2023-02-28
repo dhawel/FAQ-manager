@@ -17,7 +17,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import { deleteFaq } from "@/redux/slices/faqSlice";
 import { AppDispatch } from "@/redux/store";
 import { useDispatch } from "react-redux";
-
+import { useRouter } from "next/router";
 interface ActionButtonProps {
   rowData: {
     index: number;
@@ -30,7 +30,7 @@ interface ActionButtonProps {
 
 function ActionButton({ rowData }: ActionButtonProps) {
   const dispatch = useDispatch<AppDispatch>();
-
+  const router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null
   );
@@ -52,6 +52,9 @@ function ActionButton({ rowData }: ActionButtonProps) {
     } catch (err) {
       console.error("Error deleting question:", err);
     }
+  };
+  const handleViewItemClick= async () => {
+    router.push(`/faq/${rowData._id}`);
   };
 
   const open = Boolean(anchorEl);
@@ -75,7 +78,7 @@ function ActionButton({ rowData }: ActionButtonProps) {
           <ListItem disableGutters>
             <ListItemButton
               autoFocus
-              onClick={() => handleListItemClick("addAccount")}
+              onClick={() => handleViewItemClick("addAccount")}
             >
               <ListItemAvatar>
                 <VisibilityIcon sx={{ fontSize: 20 }} />
