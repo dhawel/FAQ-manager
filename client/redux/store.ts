@@ -15,7 +15,7 @@ const makeStore = () =>
     },
     devTools: true,
   });
-
+export const store = makeStore();
 export type AppStore = ReturnType<typeof makeStore>;
 export type AppState = ReturnType<AppStore["getState"]>;
 export type AppThunk<ReturnType = void> = ThunkAction<
