@@ -4,7 +4,7 @@ export type Faq = {
   category: string;
   status: string;
 };
-export  type FaqWithoutId = Omit<Faq, "_id">;
+export type FaqWithoutId = Omit<Faq, "_id">;
 export interface FaqState {
   faqs: Faq[];
   status: "idle" | "loading" | "succeeded" | "failed";

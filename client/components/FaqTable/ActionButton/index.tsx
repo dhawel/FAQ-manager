@@ -14,9 +14,9 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 //Redux
+import { useAppDispatch } from "@/redux/hooks";
 import { deleteFaq, updateFaq } from "@/redux/slices/faqSlice";
-import { AppDispatch } from "@/redux/store";
-import { useDispatch } from "react-redux";
+// import { useAppDispatch } from "react-redux";
 import { useRouter } from "next/router";
 interface ActionButtonProps {
   rowData: {
@@ -29,7 +29,7 @@ interface ActionButtonProps {
 }
 
 function ActionButton({ rowData }: ActionButtonProps) {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null
@@ -43,8 +43,6 @@ function ActionButton({ rowData }: ActionButtonProps) {
     setAnchorEl(null);
   };
 
-
-
   const handleDeleteClick = async () => {
     try {
       await dispatch(deleteFaq(rowData._id));
@@ -53,21 +51,18 @@ function ActionButton({ rowData }: ActionButtonProps) {
       console.error("Error deleting question:", err);
     }
   };
-  const handleViewClick= async () => {
-
-    const newTab = window.open(`/faq/${rowData._id}`, '_blank');
-       handleClose();
-      newTab?.focus();
+  const handleViewClick = async () => {
+    const newTab = window.open(`/faq/${rowData._id}`, "_blank");
+    handleClose();
+    newTab?.focus();
   };
 
-  const  handleDeactivateClick= async () => {
+  const handleDeactivateClick = async () => {
+    const deactivatedFaq = { ...rowData, status: "Disabled" };
 
-    const deactivatedFaq={...rowData,status:"Disabled"}
- 
     await dispatch(updateFaq(deactivatedFaq));
-      handleClose();
+    handleClose();
   };
-
 
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
@@ -88,10 +83,7 @@ function ActionButton({ rowData }: ActionButtonProps) {
       >
         <List>
           <ListItem disableGutters>
-            <ListItemButton
-              autoFocus
-              onClick={() => handleViewClick()}
-            >
+            <ListItemButton autoFocus onClick={() => handleViewClick()}>
               <ListItemAvatar>
                 <VisibilityIcon sx={{ fontSize: 20 }} />
               </ListItemAvatar>
@@ -103,10 +95,7 @@ function ActionButton({ rowData }: ActionButtonProps) {
           </ListItem>
 
           <ListItem disableGutters>
-            <ListItemButton
-              autoFocus
-              onClick={() => handleDeactivateClick()}
-            >
+            <ListItemButton autoFocus onClick={() => handleDeactivateClick()}>
               <ListItemAvatar>
                 <CheckCircleOutlineIcon sx={{ fontSize: 20 }} />
               </ListItemAvatar>
