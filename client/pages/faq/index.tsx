@@ -6,10 +6,12 @@ import Search from "@/components/Search";
 import styles from "@/styles/Faq.module.css";
 //Redux
 import { fetchFaqs } from "@/redux/slices/faqSlice";
-import { State, wrapper } from "@/redux/store";
+import { AppState, wrapper } from "@/redux/store";
+
+import { NextPage } from "next";
 import { connect } from "react-redux";
 
-const Faq = ({ faq }) => {
+const Faq: NextPage<AppState> = (props) => {
   const ariaLabel = { "aria-label": "description" };
 
   return (
@@ -26,7 +28,7 @@ const Faq = ({ faq }) => {
           <Search />
         </div>
         <div className={styles.table}>
-          <FaqTable faqs={faq.faqs} />
+          <FaqTable faqs={props.faq.faqs} />
         </div>
         <div className={styles.footer}>
           <Footer />
@@ -48,4 +50,4 @@ export const getServerSideProps = wrapper.getServerSideProps(
     }
 );
 // export default Faq;
-export default connect((state: State) => state)(Faq);
+export default connect((state: AppState) => state)(Faq);

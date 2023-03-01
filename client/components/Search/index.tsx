@@ -1,11 +1,11 @@
 import { searchFaq } from "@/redux/slices/faqSlice";
 import Button from "@mui/material/Button";
 import { ChangeEvent, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "@/redux/hooks";
 import styles from "./index.module.css";
 const Search = () => {
   const [searchValue, setSearchValue] = useState("");
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
   };

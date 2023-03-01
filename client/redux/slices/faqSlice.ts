@@ -1,18 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
+import { Faq, FaqState, FaqWithoutId } from "../types";
 import faqApi from "./faqAPI";
-type Faq = {
-  _id: string;
-  question: string;
-  category: string;
-  status: string;
-};
-type FaqWithoutId = Omit<Faq, "_id">;
-export interface FaqState {
-  faqs: Faq[];
-  status: "idle" | "loading" | "succeeded" | "failed";
-  error: string | null;
-}
 
 export const fetchFaqs = createAsyncThunk("faq/fetchFaqs", async () => {
   const response = await faqApi.getFaqs();
@@ -28,7 +17,7 @@ export const createNewFaq = createAsyncThunk(
   }
 );
 export const updateFaq = createAsyncThunk(
-  "faq/createNewFaq",
+  "faq/updateFaq",
   async (updateFaq: Faq) => {
     const response = await faqApi.updateFaq(updateFaq);
     return response;
@@ -71,15 +60,17 @@ export const faqSlice = createSlice({
       .addCase(createNewFaq.fulfilled, (state, action: PayloadAction<Faq>) => {
         state.faqs.push(action.payload);
       })
-      // .addCase(updateFaq.fulfilled, (state, action: PayloadAction<Faq>) => {
-      //   const updatedFaq = action.payload;
-      //   const existingFaq = state.faqs.find((faq) => faq._id === updatedFaq._id);
-      //   if (existingFaq) {
-      //     existingFaq.question = updatedFaq.question;
-      //     existingFaq.category = updatedFaq.category;
-      //     existingFaq.status = updatedFaq.status;
-      //   }
-      // })
+      .addCase(updateFaq.fulfilled, (state, action: PayloadAction<Faq>) => {
+        const updatedFaq = action.payload;
+        const existingFaq = state.faqs.find(
+          (faq) => faq._id === updatedFaq._id
+        );
+        if (existingFaq) {
+          existingFaq.question = updatedFaq.question;
+          existingFaq.category = updatedFaq.category;
+          existingFaq.status = updatedFaq.status;
+        }
+      })
       .addCase(deleteFaq.fulfilled, (state, action: PayloadAction<Faq>) => {
         const faqId = action.payload._id;
 

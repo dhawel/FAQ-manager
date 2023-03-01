@@ -3,15 +3,14 @@ import Button from "@mui/material/Button";
 import * as React from "react";
 import { useState } from "react";
 
+import { useAppDispatch } from "@/redux/hooks";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import MenuItem from "@mui/material/MenuItem";
 import Modal from "@mui/material/Modal";
 import AddQuestionButton from "./AddQuestionButton";
 
-import { useDispatch } from "react-redux";
-
 import TextField from "@mui/material/TextField";
-// import { postQuestion } from "../../redux/slices/faqSlice";
+
 import { createNewFaq } from "@/redux/slices/faqSlice";
 const style = {
   position: "absolute" as "absolute",
@@ -33,8 +32,8 @@ const AddQuestion = () => {
   let [Question, setQuestion] = useState("");
   let [Category, setCategory] = useState("General");
 
-  const dispatch = useDispatch();
-  // const { questions, loading } = useSelector((state) => state.question);
+  const dispatch = useAppDispatch();
+
 
   const Catagories = [
     {

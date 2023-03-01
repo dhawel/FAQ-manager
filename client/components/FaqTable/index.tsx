@@ -19,8 +19,6 @@ import ActionButton from "./ActionButton";
 import StatusButton from "./StatusButton";
 
 //Redux
-import { FaqState } from "@/redux/slices/faqSlice";
-import { useDispatch, useSelector } from "react-redux";
 interface TablePaginationActionsProps {
   count: number;
   page: number;
@@ -110,11 +108,6 @@ type FaqTableProps = {
   }>;
 };
 export default function FaqTable({ faqs }: FaqTableProps) {
-  const dispatch = useDispatch();
-  // const faqs = useSelector((state: FaqState) => state.faqs);
-  const faqStatus = useSelector((state: FaqState) => state.status);
-  const faqError = useSelector((state: FaqState) => state.error);
-
   const rows = faqs.map((faq, index) => {
     const { question, category, status, _id } = faq;
     return { index, _id, question, category, status };
