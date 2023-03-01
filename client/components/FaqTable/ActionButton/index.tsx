@@ -14,7 +14,7 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 //Redux
-import { deleteFaq } from "@/redux/slices/faqSlice";
+import { deleteFaq, updateFaq } from "@/redux/slices/faqSlice";
 import { AppDispatch } from "@/redux/store";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
@@ -43,7 +43,7 @@ function ActionButton({ rowData }: ActionButtonProps) {
     setAnchorEl(null);
   };
 
-  function handleListItemClick(params: type) {}
+
 
   const handleDeleteClick = async () => {
     try {
@@ -53,11 +53,21 @@ function ActionButton({ rowData }: ActionButtonProps) {
       console.error("Error deleting question:", err);
     }
   };
-  const handleViewItemClick= async () => {
+  const handleViewClick= async () => {
 
     const newTab = window.open(`/faq/${rowData._id}`, '_blank');
+       handleClose();
       newTab?.focus();
   };
+
+  const  handleDeactivateClick= async () => {
+
+    const deactivatedFaq={...rowData,status:"Disabled"}
+ 
+    await dispatch(updateFaq(deactivatedFaq));
+      handleClose();
+  };
+
 
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
@@ -80,7 +90,7 @@ function ActionButton({ rowData }: ActionButtonProps) {
           <ListItem disableGutters>
             <ListItemButton
               autoFocus
-              onClick={() => handleViewItemClick("addAccount")}
+              onClick={() => handleViewClick()}
             >
               <ListItemAvatar>
                 <VisibilityIcon sx={{ fontSize: 20 }} />
@@ -95,7 +105,7 @@ function ActionButton({ rowData }: ActionButtonProps) {
           <ListItem disableGutters>
             <ListItemButton
               autoFocus
-              onClick={() => handleListItemClick("addAccount")}
+              onClick={() => handleDeactivateClick()}
             >
               <ListItemAvatar>
                 <CheckCircleOutlineIcon sx={{ fontSize: 20 }} />

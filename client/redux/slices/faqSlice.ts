@@ -28,7 +28,7 @@ export const createNewFaq = createAsyncThunk(
   }
 );
 export const updateFaq = createAsyncThunk(
-  "faq/createNewFaq",
+  "faq/updateFaq",
   async (updateFaq: Faq) => {
     const response = await faqApi.updateFaq(updateFaq);
     return response;
@@ -71,15 +71,15 @@ export const faqSlice = createSlice({
       .addCase(createNewFaq.fulfilled, (state, action: PayloadAction<Faq>) => {
         state.faqs.push(action.payload);
       })
-      // .addCase(updateFaq.fulfilled, (state, action: PayloadAction<Faq>) => {
-      //   const updatedFaq = action.payload;
-      //   const existingFaq = state.faqs.find((faq) => faq._id === updatedFaq._id);
-      //   if (existingFaq) {
-      //     existingFaq.question = updatedFaq.question;
-      //     existingFaq.category = updatedFaq.category;
-      //     existingFaq.status = updatedFaq.status;
-      //   }
-      // })
+      .addCase(updateFaq.fulfilled, (state, action: PayloadAction<Faq>) => {
+        const updatedFaq = action.payload;
+        const existingFaq = state.faqs.find((faq) => faq._id === updatedFaq._id);
+        if (existingFaq) {
+          existingFaq.question = updatedFaq.question;
+          existingFaq.category = updatedFaq.category;
+          existingFaq.status = updatedFaq.status;
+        }
+      })
       .addCase(deleteFaq.fulfilled, (state, action: PayloadAction<Faq>) => {
         const faqId = action.payload._id;
 
