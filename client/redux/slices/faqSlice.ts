@@ -1,18 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
 import faqApi from "./faqAPI";
-type Faq = {
-  _id: string;
-  question: string;
-  category: string;
-  status: string;
-};
-type FaqWithoutId = Omit<Faq, "_id">;
-export interface FaqState {
-  faqs: Faq[];
-  status: "idle" | "loading" | "succeeded" | "failed";
-  error: string | null;
-}
+import { Faq,FaqState,FaqWithoutId } from "../types";
 
 export const fetchFaqs = createAsyncThunk("faq/fetchFaqs", async () => {
   const response = await faqApi.getFaqs();
