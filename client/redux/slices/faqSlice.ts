@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
+import { Faq, FaqState, FaqWithoutId } from "../types";
 import faqApi from "./faqAPI";
-import { Faq,FaqState,FaqWithoutId } from "../types";
 
 export const fetchFaqs = createAsyncThunk("faq/fetchFaqs", async () => {
   const response = await faqApi.getFaqs();
@@ -62,7 +62,9 @@ export const faqSlice = createSlice({
       })
       .addCase(updateFaq.fulfilled, (state, action: PayloadAction<Faq>) => {
         const updatedFaq = action.payload;
-        const existingFaq = state.faqs.find((faq) => faq._id === updatedFaq._id);
+        const existingFaq = state.faqs.find(
+          (faq) => faq._id === updatedFaq._id
+        );
         if (existingFaq) {
           existingFaq.question = updatedFaq.question;
           existingFaq.category = updatedFaq.category;
