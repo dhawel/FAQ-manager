@@ -8,7 +8,7 @@ const Footer = () => {
       }}
     >
       <div style={{ float: "left" }}>
-        copyright @ iLabs. All Rights Reserved
+        copyright @ Acme. All Rights Reserved
       </div>
       <div style={{ float: "right" }}>
         @ Privacy Policy | Terms of Service | Help Center

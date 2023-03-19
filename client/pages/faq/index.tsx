@@ -19,7 +19,7 @@ const Faq: NextPage<AppState> = (props) => {
       {/* <SearchButton/> */}
       <div className={styles.container}>
         <div className={styles.header}>
-          <h2 className={styles.tittle}>FAQ Manger - iLabs </h2>
+          <h2 className={styles.tittle}>FAQ Manger - Acme </h2>
           <div className={styles.modal}>
             <AddQuestion />
           </div>
